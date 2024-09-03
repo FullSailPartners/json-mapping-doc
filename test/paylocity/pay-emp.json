@@ -1,0 +1,158 @@
+{
+    "birthDate": "1984-01-10T00:00:00",
+    "customBooleanFields": [
+        {
+            "category": "PayrollAndHR",
+            "label": "Equity Awarded",
+            "value": false
+        },
+        {
+            "category": "PayrollAndHR",
+            "label": "NetSmart Self Supervisor",
+            "value": false
+        },
+        {
+            "category": "PayrollAndHR",
+            "label": "Exempt",
+            "value": false
+        }
+    ],
+    "customTextFields": [
+        {
+            "category": "PayrollAndHR",
+            "label": "Rarebreed Employee ID",
+            "value": "SERVICE"
+        }
+    ],
+    "employeeId": "1",
+    "coEmpCode": "S2222-1",
+    "ethnicity": "I",
+    "firstName": "David",
+    "isSmoker": true,
+    "lastName": "Se",
+    "maritalStatus": "D",
+    "middleName": "Lah",
+    "priorLastName": "prior last name",
+    "salutation": "Dr.",
+    "gender": "F",
+    "ssn": "xxx-xx-xxxx",
+    "suffix": "Esq.",
+    "currency": "USD",
+    "taxSetup": {
+        "suiState": "IL",
+        "taxForm": "W2"
+    },
+    "benefitSetup": {
+        "benefitClass": "NEEDS ACTION",
+        "benefitClassEffectiveDate": "2016-03-01T00:00:00",
+        "benefitSalary": 150000.000000,
+        "doNotApplyAdministrativePeriod": false,
+        "isMeasureAcaEligibility": false
+    },
+    "departmentPosition": {
+        "changeReason": "Initial",
+        "costCenter1": "100",
+        "costCenter2": "201",
+        "costCenter3": "600",
+        "effectiveDate": "2017-10-12T00:00:00",
+        "employeeType": "TFT",
+        "equalEmploymentOpportunityClass": "5",
+        "isMinimumWageExempt": false,
+        "isOvertimeExempt": false,
+        "isSupervisorReviewer": false,
+        "isUnionDuesCollected": false,
+        "isUnionInitiationCollected": false,
+        "jobTitle": "Customer Support",
+        "payGroup": "ContStaf",
+        "positionCode": "SERVICE",
+        "reviewerCompanyNumber": "S2222",
+        "reviewerEmployeeId": "68",
+        "supervisorCompanyNumber": "S2222",
+        "supervisorEmployeeId": "66",
+        "workersCompensation": "9870"
+    },
+    "federalTax": {
+        "amount": 0.000000,
+        "filingStatus": "S",
+        "percentage": 0.000000,
+        "taxCalculationCode": "D",
+        "w4FormYear": 2020,
+        "dependentsAmount": 3.000000,
+        "otherIncomeAmount": 420.000000,
+        "deductionsAmount": 123.000000
+    },
+    "primaryPayRate": {
+        "annualSalary": 150000.000000,
+        "baseRate": "76.923200",
+        "defaultHours": 37.500000,
+        "effectiveDate": "2024-06-03T00:00:00",
+        "beginCheckDate": "2024-06-07T00:00:00",
+        "isAutoPay": true,
+        "payFrequency": "W",
+        "payType": "Salary",
+        "ratePer": "Hour",
+        "salary": 2884.620000
+    },
+    "primaryStateTax": {
+        "amount": 0.000000,
+        "exemptions": 1.000000,
+        "exemptions2": 0.000000,
+        "filingStatus": "S",
+        "percentage": 10.000000,
+        "specialCheckCalc": "Supp",
+        "taxCalculationCode": "P",
+        "taxCode": "IL",
+        "w4FormYear": 2019
+    },
+    "status": {
+        "adjustedSeniorityDate": "1984-01-10T00:00:00",
+        "effectiveDate": "2024-07-30T00:00:00",
+        "employeeStatus": "T",
+        "beginCheckDate": "2024-07-31T00:00:00",
+        "hireDate": "2000-01-01T00:00:00",
+        "reHireDate": "2024-07-30T00:00:00",
+        "isEligibleForRehire": false,
+        "statusType": "T",
+        "terminationDate": "2024-07-30T00:00:00"
+    },
+    "workAddress": {
+        "phoneExtension": "123",
+        "pager": "(888) 999-9999",
+        "address1": "151 Some St.",
+        "address2": "Suite Suite",
+        "city": "Chicago",
+        "country": "USA",
+        "county": "Home",
+        "emailAddress": "example@somedomain.com",
+        "mobilePhone": "(207) 808-4076",
+        "phone": "(666) 555-1235",
+        "state": "IL",
+        "postalCode": "ABC"
+    },
+    "homeAddress": {
+        "address1": "191 Some St.",
+        "address2": "1",
+        "city": "New York",
+        "country": "USA",
+        "county": "New York",
+        "mobilePhone": "1234567890",
+        "phone": "1234567890",
+        "state": "AL",
+        "postalCode": "10901"
+    },
+    "webTime": {
+        "isTimeLaborEnabled": true,
+        "badgeNumber": "-2147480388",
+        "chargeRate": 0.000000
+    },
+    "companyName": "Test Company",
+    "companyFEIN": "00-123456789",
+    "additionalRate": [
+        {
+            "effectiveDate": "2020-04-09T17:02:57.437",
+            "rateCode": "FF",
+            "rate": 4160.026667,
+            "ratePer": "Hour"
+        }
+    ]
+}

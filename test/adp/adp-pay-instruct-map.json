@@ -1,0 +1,57 @@
+{
+    "$schema": "../../map-doc-schema.json",
+    "type": "map",
+    "map": {
+        "payrollInstructions": {
+            "type": "map",
+            "map": {
+                "generalDeductionInstructions": {
+                    "type": "map",
+                    "scope": "instruction",
+                    "map": {
+                        "deductionRate": {
+                            "type": "map",
+                            "map": {
+                                "rateValue": [
+                                    {
+                                        "type": "value",
+                                        "property": "dental",
+                                        "condition": {
+                                            "scope": "instruction",
+                                            "op": "==",
+                                            "property": ["deductionCode", "shortName"],
+                                            "value": "DENTAL"
+                                        },
+                                        "default": 0
+                                    },
+                                    {
+                                        "type": "value",
+                                        "property": "medical",
+                                        "condition": {
+                                            "scope": "instruction",
+                                            "op": "==",
+                                            "property": ["deductionCode", "shortName"],
+                                            "value": "MEDICAL"
+                                        },
+                                        "default": 0
+                                    },
+                                    {
+                                        "type": "value",
+                                        "property": "vision",
+                                        "condition": {
+                                            "scope": "instruction",
+                                            "op": "==",
+                                            "property": ["deductionCode", "shortName"],
+                                            "value": "VISION"
+                                        },
+                                        "default": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

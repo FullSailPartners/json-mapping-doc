@@ -1,0 +1,94 @@
+{
+    "payrollInstructions": [
+        {
+            "workAssignmentStatus": {
+                "effectiveDateDate": "2018-03-16",
+                "codeValue": "Active"
+            },
+            "generalDeductionInstructions": [
+                {
+                    "itemID": "1693987_1337",
+                    "deductionStartDate": "2019-05-13",
+                    "deductionCode": {
+                        "codeValue": "D"
+                    },
+                    "deductionRate": {
+                        "rateValue": 140
+                    },
+                    "deductionGoal": {
+                        "goalID": "1",
+                        "goalBalanceAmount": {
+                            "amountValue": 0
+                        },
+                        "goalLimitAmount": {
+                            "amountValue": 64
+                        }
+                    },
+                    "inactiveIndicator": false
+                }
+            ],
+            "payrollGroupCode": {
+                "codeValue": "93",
+                "shortName": "93"
+            },
+            "payrollFileNumber": "96",
+            "payrollAgreementID": "2681_19400"
+        },
+        {
+            "workAssignmentStatus": {
+                "effectiveDateDate": "2018-10-23",
+                "codeValue": "Active"
+            },
+            "generalDeductionInstructions": [
+                {
+                    "itemID": "16957_1",
+                    "deductionStartDate": "2019-05-14",
+                    "deductionCode": {
+                        "codeValue": "D",
+                        "shortName": "DENTAL"
+                    },
+                    "deductionRate": {
+                        "rateValue": 100
+                    },
+                    "deductionGoal": {
+                        "goalID": "1",
+                        "goalLimitAmount": {
+                            "amountValue": 55
+                        }
+                    },
+                    "inactiveIndicator": false
+                },
+                {
+                    "itemID": "169_1214",
+                    "deductionStartDate": "2019-05-14",
+                    "deductionCode": {
+                        "codeValue": "L",
+                        "shortName": "LOAN"
+                    },
+                    "deductionRate": {
+                        "rateValue": 100
+                    },
+                    "inactiveIndicator": false
+                },
+                {
+                    "itemID": "1646_1212",
+                    "deductionStartDate": "2019-04-18",
+                    "deductionCode": {
+                        "codeValue": "M",
+                        "shortName": "MEDICAL"
+                    },
+                    "deductionRate": {
+                        "rateValue": 105.05
+                    },
+                    "inactiveIndicator": false
+                }
+            ],
+            "payrollGroupCode": {
+                "codeValue": "9N",
+                "shortName": "9N"
+            },
+            "payrollFileNumber": "12",
+            "payrollAgreementID": "39_1317"
+        }
+    ]
+}

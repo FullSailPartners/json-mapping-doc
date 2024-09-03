@@ -1,0 +1,16 @@
+{
+    "FirstName": "David",
+    "HR": {},
+    "MaritalStatus": "Divorced",
+    "CustBenefitClass": "NEEDS ACTION",
+    "CustBenefitClass2": "NEEDS ACTION",
+    "Names": "Se",
+    "Last": "Se",
+    "Suffix": "Esq. ~ F",
+    "BaseRate": 7.69232,
+    "TestRaw1": "This is a raw value.",
+    "TestRaw2": [
+        "A",
+        "B"
+    ]
+}

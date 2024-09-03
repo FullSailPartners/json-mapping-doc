@@ -1,0 +1,128 @@
+{
+    "$schema": "../../map-doc-schema.json",
+    "type": "map",
+    "map": {
+        "firstName": "FirstName",
+        "customTextFields": {
+            "type": "obj-array",
+            "dataMap": {
+                "key": "label",
+                "value": "value"
+            },
+            "map": {
+                "Rarebreed Employee ID": {
+                    "type": "code",
+                    "property": "CustRareId",
+                    "code": {
+                        "SERVICE": "S"
+                    }
+                }
+            }
+        },
+        "customBooleanFields": {
+            "type": "obj-array",
+            "dataMap": {
+                "key":"label",
+                "value":"value"
+            },
+            "map": {
+                "Equity Awarded": ["HR", "CustEquity"],
+                "NetSmart Self Supervisor": ["HR", "Supervisor"]
+            }
+        },
+        "maritalStatus": {
+            "type": "code",
+            "property": "MaritalStatus",
+            "code": {
+                "D": "Divorced",
+                "S": "Single"
+            }
+        },
+        "benefitSetup": {
+            "type": "map",
+            "map": {
+                "benefitClass": [
+                    {
+                        "type": "value",
+                        "property": "CustBenefitClass"
+                    },
+                    {
+                        "type": "value",
+                        "property": "CustBenefitClass2"
+                    }
+                ]
+            }
+        },
+        "lastName": [
+            ["Names"],
+            ["Last"]
+        ],
+        "suffix": {
+            "type": "value",
+            "condition": [
+                [
+                    {
+                        "op": "empty",
+                        "property": "hasSuffix"
+                    },
+                    {
+                        "op": "empty",
+                        "not": true,
+                        "property": "maritalStatus",
+                        "join": "||"
+                    }
+                ],
+                [
+                    {
+                        "op": "empty",
+                        "property": "hasSuffix",
+                        "join": "||"
+                    }
+                ]
+            ],
+            "property": "Suffix"
+        },
+        "gender": {
+            "type": "value",
+            "modify": {
+                "op": "append",
+                "createIfMissing": false,
+                "spacer": " ~ "
+            },
+            "condition": {
+                "op": "empty",
+                "not": true,
+                "property": "lastName"
+            },
+            "property": ["Suffix"]
+        },
+        "primaryPayRate": {
+            "type": "map",
+            "map": {
+                "baseRate": {
+                    "type": "value",
+                    "property": "BaseRate",
+                    "convert": {
+                        "pre": "number",
+                        "post": null
+                    },
+                    "math": {
+                        "op": "/",
+                        "a":"input",
+                        "b": 10
+                    }
+                }
+            }
+        },
+        "raw-nothingHere": {
+            "type": "raw",
+            "property": "TestRaw1",
+            "value": "This is a raw value."
+        },
+        "raw-nothingThere": {
+            "type": "raw",
+            "property": "TestRaw2",
+            "value": ["A", "B"]
+        }
+    }
+}

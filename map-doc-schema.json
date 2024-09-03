@@ -1,0 +1,414 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://docs.fullsailpartners.com/blackbox-map.schema.json",
+    "title": "Blackbox Mapping Document Schema",
+    "description": "A schema for mapping documents used by the blackbox product.",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "description": "The document schema",
+            "type": "string"
+        },
+        "type": {
+            "description": "The type of mapping object is in use.",
+            "type": "string",
+            "enum": [
+                "map",
+                "obj-array",
+                "code",
+                "value",
+                "raw"
+            ],
+            "default": "map"
+        },
+        "map": {
+            "description": "The raw mapping values.",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "#/properties/property"
+                    },
+                    {
+                        "$ref": "#"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#"
+                        }
+                    }
+                ]
+            }
+        },
+        "dataMap": {
+            "description": "The key/value mapping for converting the array of objects into a parseable map.",
+            "properties": {
+                "key": {
+                    "description": "The field to use for key values.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The field to use for value values.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "property": {
+            "description": "The output name to place a value into.",
+            "type": [
+                "string",
+                "array"
+            ],
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ]                
+            },
+            "additionalProperties": false
+        },
+        "value": {
+            "description": "A raw value."
+        },
+        "code": {
+            "description": "A code mapping. Maps one to one values.",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "raw": {
+            "type": "object",
+            "description": "A raw value to be placed in the specified location.",
+            "properties": {
+                "property": {
+                    "$ref": "#/properties/property"
+                },
+                "value": {
+                    "description": "The raw value."
+                }
+            },
+            "additionalProperties": false
+        },
+        "condition": {
+            "description": "If true, the operation will be performed.",
+            "type": [
+                "object",
+                "array"
+            ],
+            "items": {
+                "$ref": "#/properties/condition"
+            },
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "&&",
+                        "||",
+                        "<",
+                        "<=",
+                        ">",
+                        ">=",
+                        "==",
+                        "null",
+                        "empty"
+                    ]
+                },
+                "not": {
+                    "type": "boolean"
+                },
+                "property": {
+                    "type": [
+                        "string",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "value": {
+                    "type": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "join": {
+                    "description": "The operator to use when joining two conditions together.",
+                    "type": "string",
+                    "enum": [
+                        "&&",
+                        "||"
+                    ],
+                    "default": "&&"
+                },
+                "scope": {
+                    "description": "The scope to pull data from. If null, pulls from all data.",
+                    "type": ["string", null],
+                    "default": null
+                },
+                "check": {
+                    "description": "The object to check data from. When set to output, scope is ignored.",
+                    "type": "string",
+                    "default": "input",
+                    "enum": [
+                        "input",
+                        "output"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "anyOf": [
+                {
+                    "not": {
+                        "properties": {
+                            "op": {
+                                "const": "null"
+                            }
+                        }
+                    }
+                },
+                {
+                    "not": {
+                        "properties": {
+                            "op": {
+                                "const": "empty"
+                            }
+                        }
+                    }
+                },
+                {
+                    "required": [
+                        "value"
+                    ]
+                }
+            ]
+        },
+        "modify": {
+            "description": "Indicates this value should modify a value instead of replacing it.",
+            "type": "object",
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "sub",
+                        "append",
+                        "prepend"
+                    ]
+                },
+                "createIfMissing": {
+                    "description": "If true, create the value if it does not exist. If false, skip this value if it does not already exist.",
+                    "type": "boolean"
+                },
+                "spacer": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "anyOf": [
+                {
+                    "properties": {
+                        "op": {
+                            "enum": [
+                                "append",
+                                "prepend"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "spacer"
+                    ]
+                },
+                {
+                    "properties": {
+                        "op": {
+                            "enum": [
+                                "add",
+                                "sub"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "math": {
+            "description": "Perform a math action on a value.",
+            "type": "object",
+            "properties": {
+                "op": {
+                    "description": "The math operation to perform.",
+                    "type": "string"
+                },
+                "a": {
+                    "oneOf": [
+                        {
+                            "description": "Use the input in place of a for (a op b).",
+                            "type": "string",
+                            "enum": [
+                                "input"
+                            ]
+                        },
+                        {
+                            "description": "The value of a for (a op b)",
+                            "type": "number"
+                        }
+                    ]
+                },
+                "b": {
+                    "oneOf": [
+                        {
+                            "description": "If true, use the input in place of b for (a op b).",
+                            "type": "string",
+                            "enum": [
+                                "input"
+                            ]
+                        },
+                        {
+                            "description": "The value of b for (a op b)",
+                            "type": "number"
+                        }
+                    ]
+                }
+            },
+            "anyOf": [
+                {
+                    "properties": {
+                        "op": {
+                            "enum": [
+                                "+",
+                                "-",
+                                "*",
+                                "\/",
+                                "%",
+                                "^"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "op",
+                        "a",
+                        "b"
+                    ]
+                }
+            ]
+        },
+        "convert": {
+            "description": "Convert an object from one type to another.",
+            "type": "object",
+            "properties": {
+                "pre": {
+                    "description": "The pre-conversion occurs before any other transforms.",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "enum": [
+                        "number",
+                        "string",
+                        null
+                    ],
+                    "default": null
+                },
+                "post": {
+                    "description": "The post-conversion occurs after all other transforms",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "enum": [
+                        "number",
+                        "string",
+                        null
+                    ],
+                    "default": null
+                },
+                "additionalProperties": false
+            },
+            "additionalProperties": false,
+            "required": [
+                "pre",
+                "post"
+            ]
+        },
+        "array": {
+            "description": "If false, the parser will skip this map in the event it is an array.",
+            "type": "boolean",
+            "default": true
+        },
+        "scope": {
+            "description": "When defined, data from this level will be set as a scope. Any condition can then use this data as the root level instead of all data by defined the scope field in the condition.",
+            "type": ["string", null],
+            "default": null
+        },
+        "default": {
+            "description": "The default value to use if the specified value is never added to the output."
+        }
+    },
+    "additionalProperties": false,
+    "anyOf": [
+        {
+            "properties": {
+                "type": {
+                    "const": "map"
+                }
+            },
+            "required": [
+                "map"
+            ]
+        },
+        {
+            "properties": {
+                "type": {
+                    "const": "obj-array"
+                }
+            },
+            "required": [
+                "map",
+                "dataMap"
+            ]
+        },
+        {
+            "properties": {
+                "type": {
+                    "const": "code"
+                }
+            },
+            "required": [
+                "property",
+                "code"
+            ]
+        },
+        {
+            "properties": {
+                "type": {
+                    "const": "value"
+                }
+            },
+            "required": [
+                "property"
+            ]
+        },
+        {
+            "properties": {
+                "type": {
+                    "const": "raw"
+                }
+            },
+            "required": [
+                "property",
+                "value"
+            ]
+        }
+    ]
+}
