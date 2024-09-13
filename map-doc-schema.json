@@ -201,8 +201,6 @@
                 "op": {
                     "type": "string",
                     "enum": [
-                        "add",
-                        "sub",
                         "append",
                         "prepend"
                     ]
@@ -229,16 +227,6 @@
                     "required": [
                         "spacer"
                     ]
-                },
-                {
-                    "properties": {
-                        "op": {
-                            "enum": [
-                                "add",
-                                "sub"
-                            ]
-                        }
-                    }
                 }
             ]
         },
