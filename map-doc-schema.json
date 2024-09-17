@@ -28,7 +28,13 @@
             "additionalProperties": {
                 "oneOf": [
                     {
-                        "$ref": "#/properties/property"
+                        "type": [
+                            "string",
+                            "array"
+                        ],
+                        "items": {
+                            "$ref": "#/properties/property"
+                        }
                     },
                     {
                         "$ref": "#"
@@ -60,22 +66,43 @@
             "description": "The output name to place a value into.",
             "type": [
                 "string",
-                "array"
+                "array",
+                "object"
             ],
             "items": {
                 "oneOf": [
                     {
-                        "type": "string"
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                        "type": "object",
+                        "$ref": "#/properties/property"
                     }
-                ]                
+                ]
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of this property."
+                },
+                "isArray": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If true, this property is an array. Any values placed into this variable will be added as new objects unless overwrite is set."
+                },
+                "overwrite": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If true, will populate this value even if it already exists. This will overwrite arrays."
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "If set, outputs with the same scope will go to the same value in the output array. Useful for building arrays of objects."
+                },
+                "writeNull": {
+                    "type": "boolean",
+                    "description": "If true, write null values to the output.",
+                    "default": false
+                }
+            }
         },
         "value": {
             "description": "A raw value."
@@ -154,7 +181,10 @@
                 },
                 "scope": {
                     "description": "The scope to pull data from. If null, pulls from all data.",
-                    "type": ["string", null],
+                    "type": [
+                        "string",
+                        null
+                    ],
                     "default": null
                 },
                 "check": {
@@ -336,7 +366,10 @@
         },
         "scope": {
             "description": "When defined, data from this level will be set as a scope. Any condition can then use this data as the root level instead of all data by defined the scope field in the condition.",
-            "type": ["string", null],
+            "type": [
+                "string",
+                null
+            ],
             "default": null
         },
         "default": {
