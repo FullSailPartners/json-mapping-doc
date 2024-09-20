@@ -232,15 +232,26 @@
                     "type": "string",
                     "enum": [
                         "append",
-                        "prepend"
+                        "prepend",
+                        "split"
                     ]
                 },
                 "createIfMissing": {
                     "description": "If true, create the value if it does not exist. If false, skip this value if it does not already exist.",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
-                "spacer": {
+                "delimiter": {
                     "type": "string"
+                },
+                "takeIndex": {
+                    "type": "number",
+                    "description": "When splitting an object, what index of the value should be saved? If the value is not in the results after the split, null will be returned."
+                },
+                "removeEmptyEntries": {
+                    "type": "boolean",
+                    "description": "When splitting an object, this will remove all entries that are an empty string.",
+                    "default": false
                 }
             },
             "additionalProperties": false,
@@ -255,7 +266,20 @@
                         }
                     },
                     "required": [
-                        "spacer"
+                        "delimiter"
+                    ]
+                },
+                {
+                    "properties": {
+                        "op": {
+                            "enum": [
+                                "split"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "delimiter",
+                        "takeIndex"
                     ]
                 }
             ]
