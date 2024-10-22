@@ -374,8 +374,7 @@
                         null
                     ],
                     "default": null
-                },
-                "additionalProperties": false
+                }
             },
             "additionalProperties": false,
             "required": [
