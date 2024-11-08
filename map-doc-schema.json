@@ -167,8 +167,76 @@
                         "string",
                         "number",
                         "boolean",
-                        "null"
-                    ]
+                        "null",
+                        "object"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "input",
+                                "output",
+                                "variable"
+                            ]
+                        },
+                        "property": {
+                            "$ref": "#/properties/condition/properties/property"
+                        },
+                        "variable": {
+                            "type": "string",
+                            "enum": [
+                                "date-now"
+                            ]
+                        },
+                        "offset": {
+                            "type": "string",
+                            "description": "A date/time offset. Ex: -1d5s would offset the date by - 1 day, 5 seconds. y = year, M = month, d = day, h = hour, m = minute, s = second.",
+                            "pattern": "^(-)?(\\d*y)?(\\d*M)?(\\d*w)?(\\d*d)?(\\d*h)?(\\d*m)?(\\d*s)?$"
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ],
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "type": {
+                                    "enum": [
+                                        "input",
+                                        "output"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "property"
+                            ]
+                        },
+                        {
+                            "properties": {
+                                "type": {
+                                    "enum": [
+                                        "variable"
+                                    ]
+                                }
+                            },
+                            "anyOf": [
+                                {
+                                    "properties": {
+                                        "variable": {
+                                            "enum": [
+                                                "date-now"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "variable",
+                                        "offset"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "additionalProperties": false
                 },
                 "join": {
                     "description": "The operator to use when joining two conditions together.",
