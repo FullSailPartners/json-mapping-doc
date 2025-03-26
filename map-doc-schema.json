@@ -450,6 +450,14 @@
                 "post"
             ]
         },
+        "format": {
+            "description": "Formatting based on .NET's string.Format() method. There is only one element with an index of 0. Information about formatting can be found here: https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-string-format#the-format-item",
+            "type": [
+                "string",
+                null
+            ],
+            "default": "{0}"
+        },
         "array": {
             "description": "If false, the parser will skip this map in the event it is an array.",
             "type": "boolean",
