@@ -300,8 +300,7 @@
                     "type": "string",
                     "enum": [
                         "append",
-                        "prepend",
-                        "split"
+                        "prepend"
                     ]
                 },
                 "createIfMissing": {
@@ -314,12 +313,14 @@
                 },
                 "takeIndex": {
                     "type": "number",
-                    "description": "When splitting an object, what index of the value should be saved? If the value is not in the results after the split, null will be returned."
+                    "description": "When splitting an object, what index of the value should be saved? If the value is not in the results after the split, null will be returned.",
+                    "deprecated": true
                 },
                 "removeEmptyEntries": {
                     "type": "boolean",
                     "description": "When splitting an object, this will remove all entries that are an empty string.",
-                    "default": false
+                    "default": false,
+                    "deprecated": true
                 }
             },
             "additionalProperties": false,
@@ -348,8 +349,32 @@
                     "required": [
                         "delimiter",
                         "takeIndex"
-                    ]
+                    ],
+                    "deprecated": true
                 }
+            ]
+        },
+        "split": {
+            "description": "Splits a value before any modifications but after the first conversion.",
+            "type": "object",
+            "properties": {
+                "delimiter": {
+                    "type": "string"
+                },
+                "takeIndex": {
+                    "type": "number",
+                    "description": "When splitting an object, what index of the value should be saved? If the value is not in the results after the split, null will be returned."
+                },
+                "removeEmptyEntries": {
+                    "type": "boolean",
+                    "description": "When splitting an object, this will remove all entries that are an empty string.",
+                    "default": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "delimiter",
+                "takeIndex"
             ]
         },
         "math": {
@@ -426,6 +451,7 @@
                     "enum": [
                         "number",
                         "string",
+                        "datetime",
                         null
                     ],
                     "default": null
@@ -439,6 +465,7 @@
                     "enum": [
                         "number",
                         "string",
+                        "datetime",
                         null
                     ],
                     "default": null
