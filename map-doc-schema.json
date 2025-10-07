@@ -452,7 +452,7 @@
                         "number",
                         "string",
                         "datetime",
-                        null
+                        "null"
                     ],
                     "default": null
                 },
@@ -466,7 +466,7 @@
                         "number",
                         "string",
                         "datetime",
-                        null
+                        "null"
                     ],
                     "default": null
                 }
@@ -477,11 +477,33 @@
                 "post"
             ]
         },
+        "substring": {
+            "description": "Take part of a string.",
+            "type": "object",
+            "properties": {
+                "start": {
+                    "description": "The starting index to split a string.",
+                    "type": "number"
+                },
+                "length": {
+                    "description": "The length of the string to get, or null if the rest of the string should be used.",
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "default": null
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "start"
+            ]
+        },
         "format": {
             "description": "Formatting based on .NET's string.Format() method. There is only one element with an index of 0. Information about formatting can be found here: https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-string-format#the-format-item",
             "type": [
                 "string",
-                null
+                "null"
             ],
             "default": "{0}"
         },
@@ -494,12 +516,44 @@
             "description": "When defined, data from this level will be set as a scope. Any condition can then use this data as the root level instead of all data by defined the scope field in the condition.",
             "type": [
                 "string",
-                null
+                "null"
             ],
             "default": null
         },
         "default": {
             "description": "The default value to use if the specified value is never added to the output."
+        },
+        "$processor": {
+            "description": "Processor settings for this element.",
+            "type": "object",
+            "properties": {
+                "operations": {
+                    "description": "The operations to perform when processing this element.",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "split",
+                            "substring",
+                            "convert-pre",
+                            "math",
+                            "format",
+                            "modify",
+                            "convert-post"
+                        ]
+                    },
+                    "default": [
+                        "split",
+                        "substring",
+                        "convert-pre",
+                        "math",
+                        "format",
+                        "modify",
+                        "convert-post"
+                    ]
+                }
+            },
+            "additionalProperties": false
         }
     },
     "additionalProperties": false,
